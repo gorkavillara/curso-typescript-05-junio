@@ -25,3 +25,29 @@ function obtenArea(forma: Forma): number {
 const miArea = obtenArea(miForma)
 
 console.log(`El área de mi forma es ${miArea}`)
+
+interface Alumno {
+    nombre: string
+    edad: number
+}
+
+const alumnos: Alumno[] = [{
+    nombre: "Gorka",
+    edad: 25
+}, {
+    nombre: "Aitor",
+    edad: 22
+}, {
+    nombre: "Álvar",
+    edad: 25
+}]
+
+console.table(alumnos)
+
+console.error("Esto es un error")
+
+console.time("timer")
+for (let i = 0; i < 123456789; i++) {
+    let a = 0
+}
+console.timeEnd("timer")
