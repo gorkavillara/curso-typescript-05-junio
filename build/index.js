@@ -1,33 +1,18 @@
 "use strict";
-const miForma = {
-    nombre: "cuadrado",
-    color: "Rojo",
-    base: 5,
-    altura: 5
+const misNumeros = [1, 2, 3, 4, 5, 6];
+const elDoble = misNumeros.map((numero) => numero * 2);
+console.log(elDoble);
+const devuelveElDobleDelNumero = (numero) => 2 * numero;
+const otroDoble = misNumeros.map(devuelveElDobleDelNumero);
+console.log(otroDoble);
+// Sobrecarga de funciones
+// const sumar = (a: number, b: number) => a + b
+const sumar = (...params) => {
+    // console.log(params)
+    // let suma = 0
+    // params.forEach(param => )
+    const nuevoValor = params.reduce((valorAcumulado, valorActual) => valorAcumulado + valorActual, 0);
+    console.log(nuevoValor);
+    return nuevoValor;
 };
-function obtenArea(forma) {
-    // const base = forma.base
-    // const altura = forma.altura
-    const { base, altura } = forma;
-    return base * altura;
-}
-const miArea = obtenArea(miForma);
-console.log(`El área de mi forma es ${miArea}`);
-const alumnos = [{
-        nombre: "Gorka",
-        edad: 25
-    }, {
-        nombre: "Aitor",
-        edad: 22
-    }, {
-        nombre: "Álvar",
-        edad: 25
-    }];
-console.table(alumnos);
-console.error("Esto es un error");
-console.time("timer");
-for (let i = 0; i < 123456789; i++) {
-    let a = 0;
-}
-console.timeEnd("timer");
 //# sourceMappingURL=index.js.map
