@@ -10,4 +10,17 @@ userForm.onsubmit = (event) => {
     document.cookie = `username=${username}`;
     document.cookie = `password=${password}`;
 };
+const miCookie = "username=miusername; password=123455677";
+const obtenMiCookie = (todalacookieenteraenstring, lakeyquebuscamos) => {
+    const arrayDeCookies = todalacookieenteraenstring
+        .split("; ")
+        .map((cadaUna) => {
+        const [key, value] = cadaUna.split("=");
+        return { key, value };
+    });
+    const valor = arrayDeCookies.find((cadaCookie) => cadaCookie.key === lakeyquebuscamos);
+    return valor ? valor.value : null;
+};
+console.log(obtenMiCookie(miCookie, "username"));
+console.log(obtenMiCookie(miCookie, "password"));
 //# sourceMappingURL=index.js.map
