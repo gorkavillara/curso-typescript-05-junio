@@ -9,31 +9,36 @@ const userForm = document.querySelector("form") as HTMLFormElement;
 
 userForm.onsubmit = (event) => {
   event.preventDefault();
+  if (!userInput || !passwordInput) return
+
   console.log("Estoy en el evento");
-  const username = userInput?.value;
-  const password = passwordInput?.value;
+  const username = userInput.value;
+  const password = passwordInput.value;
 
-  document.cookie = `username=${username}`;
-  document.cookie = `password=${password}`;
+  sessionStorage.setItem("username", username)
+  sessionStorage.setItem("password", password)
+
+//   document.cookie = `username=${username}`;
+//   document.cookie = `password=${password}`;
 };
 
-const miCookie = "username=miusername; password=123455677";
+// const miCookie = "username=miusername; password=123455677";
 
-const obtenMiCookie = (
-  todalacookieenteraenstring: string,
-  lakeyquebuscamos: string
-) => {
-  const arrayDeCookies = todalacookieenteraenstring
-    .split("; ")
-    .map((cadaUna) => {
-      const [key, value] = cadaUna.split("=");
-      return { key, value };
-    });
-  const valor = arrayDeCookies.find(
-    (cadaCookie) => cadaCookie.key === lakeyquebuscamos
-  );
-  return valor ? valor.value : null;
-};
+// const obtenMiCookie = (
+//   todalacookieenteraenstring: string,
+//   lakeyquebuscamos: string
+// ) => {
+//   const arrayDeCookies = todalacookieenteraenstring
+//     .split("; ")
+//     .map((cadaUna) => {
+//       const [key, value] = cadaUna.split("=");
+//       return { key, value };
+//     });
+//   const valor = arrayDeCookies.find(
+//     (cadaCookie) => cadaCookie.key === lakeyquebuscamos
+//   );
+//   return valor ? valor.value : null;
+// };
 
-console.log(obtenMiCookie(miCookie, "username"));
-console.log(obtenMiCookie(miCookie, "password"));
+// console.log(obtenMiCookie(miCookie, "username"));
+// console.log(obtenMiCookie(miCookie, "password"));
