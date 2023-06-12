@@ -1,3 +1,5 @@
+import Dexie from "dexie"
+
 const userInput = document.querySelector(
   "input#input-username"
 ) as HTMLInputElement | null;
@@ -9,36 +11,34 @@ const userForm = document.querySelector("form") as HTMLFormElement;
 
 userForm.onsubmit = (event) => {
   event.preventDefault();
-  if (!userInput || !passwordInput) return
+  if (!userInput || !passwordInput) return;
 
   console.log("Estoy en el evento");
   const username = userInput.value;
   const password = passwordInput.value;
-
-  sessionStorage.setItem("username", username)
-  sessionStorage.setItem("password", password)
-
-//   document.cookie = `username=${username}`;
-//   document.cookie = `password=${password}`;
 };
 
-// const miCookie = "username=miusername; password=123455677";
+const database = window.indexedDB
 
-// const obtenMiCookie = (
-//   todalacookieenteraenstring: string,
-//   lakeyquebuscamos: string
-// ) => {
-//   const arrayDeCookies = todalacookieenteraenstring
-//     .split("; ")
-//     .map((cadaUna) => {
-//       const [key, value] = cadaUna.split("=");
-//       return { key, value };
-//     });
-//   const valor = arrayDeCookies.find(
-//     (cadaCookie) => cadaCookie.key === lakeyquebuscamos
-//   );
-//   return valor ? valor.value : null;
-// };
+if (database) {
+  let db: IDBDatabase;
+  const request = database.open("Usuarios", 2)
 
-// console.log(obtenMiCookie(miCookie, "username"));
-// console.log(obtenMiCookie(miCookie, "password"));
+  request.onupgradeneeded = () => {
+    db = request.result
+    console.log("BBDD creada", db)
+  }
+
+
+}
+
+class DatabaseIDB extends Dexie {
+  constructor(params: string) {
+    super(params)
+  }
+}
+
+const myDb = new DatabaseIDB("Usuarios")
+
+console.log({ myDb })
+console.log("Hola mundo")
