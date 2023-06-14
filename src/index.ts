@@ -1,5 +1,5 @@
 import figlet from "figlet"
-import MenuPrincipal from "./controller/menuController"
+import MenuPrincipal from "./controller/menuController.js"
 // import chalk from "chalk"
 
 // console.log("Hola mundo desde el proyecto final de Typescript")

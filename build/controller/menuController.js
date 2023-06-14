@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import inquirer from "inquirer";
+import { Cliente } from "../models/clientes.js";
 const MenuPrincipal = () => __awaiter(void 0, void 0, void 0, function* () {
     while (true) {
         const response = yield inquirer.prompt([
@@ -27,6 +28,19 @@ const MenuPrincipal = () => __awaiter(void 0, void 0, void 0, function* () {
         // Si la respuesta es salir -> return
         // Si no, voy a volver a mostrar el prompt
         console.log(response);
+        if (response.menuPrincipal === "1. Crear nuevo cliente") {
+            // Crearemos un nuevo cliente
+        }
+        if (response.menuPrincipal === "2. Listar clientes") {
+            // Listaremos los clientes que haya en el servidor
+            const clientes = yield Cliente.obtenClientes();
+            // console.log(clientes)
+            clientes.forEach((cliente) => {
+                console.log(`${cliente.id}. ${cliente.nombre}`);
+            });
+        }
+        if (response.menuPrincipal === "3. Actualizar cliente") { }
+        if (response.menuPrincipal === "4. Eliminar cliente") { }
         if (response.menuPrincipal === "5. Salir")
             return;
     }

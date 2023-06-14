@@ -1,3 +1,5 @@
+import axios from "axios"
+
 class Cliente {
     static tipo = "cliente"
     id: number
@@ -18,6 +20,14 @@ class Cliente {
 
     static definicion() {
         console.log("Un cliente es un activo valioso para las empresas")
+    }
+
+    static async obtenClientes(): Promise<Cliente[]> {
+        const url = "https://97ebb3ca3281.ngrok.app/clients"
+        const data = { action: "get" }
+        const clientes = await axios.post(url, data)
+        // console.log(clientes.data)
+        return clientes.data
     }
 }
 
